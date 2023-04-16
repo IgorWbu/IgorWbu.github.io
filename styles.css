@@ -1,59 +1,54 @@
-/* Default styles */
 body {
-  font-family: "DM Sans", sans-serif;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-}
-
-h1, p {
-  font-size: 3rem;
-  margin-top: 2rem;
-  font-family: "DM Sans", sans-serif;
-} 
-
-#result {
-  font-size: 2rem;
-  margin-top: 1rem;
-  font-family: 'Space Mono', monospace;
-}
-
+    font-family: "DM Sans", sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+  }
+  
+  h1, p {
+    font-size: 3rem;
+    margin-top: 2rem;
+    font-family: "DM Sans", sans-serif;
+  } 
+  
+  #result {
+    font-size: 2rem;
+    margin-top: 1rem;
+    font-family: 'Space Mono', monospace;
+  }
+  
 /* Daytime background before GPS connection */
 body:not(.night) {
-  background-color: #E8F0F2;
-  color: #335C67;
-}
-
-/* Nighttime background before GPS connection */
-body.night {
-  background-color: #335C67;
-  color: #E8F0F2;
-}
-
-/* Daytime background after GPS connection */
-body:not(.night).gps {
-  background-color: #FFF3B0;
-  color: #335C67;
-}
-
-/* Nighttime background after GPS connection */
-body.night.gps {
-  background-color: #212121;
-  color: #E8F0F2;
-}
-
-/* Media queries for mobile devices */
-@media only screen and (max-width: 768px) {
-  h1 {
-    font-size: 2.5rem;
-    margin-top: 1.5rem;
+    background-color: #E8F0F2;
+    color: #335C67;
   }
-  p {
-    font-size: 1.8rem;
-    margin-top: 1.5rem;
+  /* Nighttime background before GPS connection */
+  body.night {
+    background-color: #335C67;
+    color: #E8F0F2;
   }
-  #result {
-    font-size: 1.5rem;
-    margin-top: 1rem;
+  /* Daytime background after GPS connection */
+  body:not(.night).gps {
+    background-color: #FFF3B0;
+    color: #335C67;
   }
+  /* Nighttime background after GPS connection */
+  body.night.gps {
+    background-color: #FFF3B0;
+    color: #202020;
+  }
+  footer {
+    font-size: 3px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: None;
+    color: #568EA3;
+    text-align: center;
+    padding: 20px;
 }
+img {
+    max-width: 4%;
+    height: auto;
+  }
