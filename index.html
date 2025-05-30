@@ -1,30 +1,358 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
-    <title>Is it Night?</title>
-    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Space+Mono&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="logo.png">
-  </head>
-  <body>
-    <h1>Is it Dark Outside?</h1>
-    <p id="result"></p>
-    
-    <script src="app.js"></script>
-  </body>
-  <footer>
-    <div class="social">
-      <a href="https://www.instagram.com/igor.wbu/" target="_blank">
-        <img src="insta.png" alt="Instagram">
-      </a>
-      <a href="https://github.com/IgorWbu" target="_blank">
-        <img src="git.png" alt="GitHub">
-
-      </a>
-      <p>&copy; 2023 IgorWbu</p>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>12 Things I Love About You</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ffb6c1 0%, #ffc0cb 100%);
+            font-family: 'Montserrat', sans-serif;
+            overflow: hidden;
+            perspective: 1000px;
+        }
+        
+        .container {
+            text-align: center;
+            padding: 20px;
+            max-width: 800px;
+            width: 100%;
+            position: relative;
+            z-index: 10;
+        }
+        
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.8rem;
+            color: #d35d6e;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            letter-spacing: 1px;
+            animation: pulse 2s infinite;
+        }
+        
+        .subtitle {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            color: #d35d6e;
+            margin-bottom: 40px;
+            animation: fadeIn 2s;
+        }
+        
+        .deck {
+            position: relative;
+            width: 240px;
+            height: 340px;
+            margin: 0 auto 40px;
+        }
+        
+        .card {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: white;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            transform-style: preserve-3d;
+            transition: all 0.5s ease;
+            cursor: pointer;
+            overflow: hidden;
+            backface-visibility: hidden;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.85) 0%, rgba(245,245,245,0.95) 100%);
+            z-index: 1;
+            border-radius: 18px;
+        }
+        
+        .card-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .card-value {
+            font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+            font-weight: 700;
+            font-size: 2.2rem;
+            position: absolute;
+            z-index: 3;
+        }
+        
+        /* Proper spacing for card values */
+        .top-left {
+            top: 22px;
+            left: 25px;
+        }
+        
+        .bottom-right {
+            bottom: 22px;
+            right: 25px;
+            transform: rotate(180deg);
+        }
+        
+        .hearts, .diamonds {
+            color: #e74c3c;
+        }
+        
+        .clubs, .spades {
+            color: #2c3e50;
+        }
+        
+        .card-message {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            color: #d35d6e;
+            line-height: 1.4;
+            text-align: center;
+            padding: 0 15px;
+            position: relative;
+            z-index: 3;
+            margin-top: -10px;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px) rotate(1deg) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        
+        .flipped {
+            animation: flyAway 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+        }
+        
+        @keyframes flyAway {
+            0% {
+                transform: translateY(0) rotate(0) scale(1);
+                opacity: 1;
+            }
+            30% {
+                transform: translateY(-30px) rotate(-5deg) scale(1.05);
+                opacity: 0.9;
+            }
+            100% {
+                transform: translateY(-500px) rotate(-15deg) scale(0.8);
+                opacity: 0;
+            }
+        }
+        
+        .final-message {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.8rem;
+            color: #d35d6e;
+            text-align: center;
+            max-width: 600px;
+            margin: 40px auto 0;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            display: none;
+            animation: fadeIn 1.5s forwards;
+        }
+        
+        .hearts-decoration {
+            position: absolute;
+            font-size: 2.2rem;
+            color: rgba(211, 93, 110, 0.3);
+            z-index: 1;
+            animation: float 8s infinite ease-in-out;
+            pointer-events: none;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0) rotate(0); }
+            25% { transform: translateY(-40px) translateX(15px) rotate(15deg); }
+            50% { transform: translateY(-20px) translateX(-15px) rotate(-15deg); }
+            75% { transform: translateY(-30px) translateX(10px) rotate(10deg); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 3rem;
+            }
+            
+            .subtitle {
+                font-size: 1.5rem;
+            }
+            
+            .deck {
+                width: 200px;
+                height: 300px;
+            }
+            
+            .card-message {
+                font-size: 1.5rem;
+            }
+            
+            .card-value {
+                font-size: 1.8rem;
+            }
+            
+            .top-left {
+                top: 40px;
+                left: 20px;
+            }
+            
+            .bottom-right {
+                bottom: 18px;
+                right: 20px;
+            }
+            
+            .final-message {
+                font-size: 2.2rem;
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>12 Things I Love About You</h1>
+        <div class="subtitle">Click each card to reveal a special reason</div>
+        
+        <div class="deck" id="deck"></div>
+        
+        <div class="final-message" id="finalMessage">
+            And the most important thing...<br>
+            Is that you're mine forever
+        </div>
     </div>
-  </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const deck = document.getElementById('deck');
+            const finalMessage = document.getElementById('finalMessage');
+            
+            // Suits for each card
+            const suits = ["hearts", "diamonds", "clubs", "spades"];
+            
+            // Card values in order: K, Q, J, 10, 9, 8, 7, 6, 5, 4, 3, 2, A
+            const values = ["k", "q", "j", "10", "9", "8", "7", "6", "5", "4", "3", "2", "a"];
+            
+            // Romantic messages
+            const messages = [
+                "Your scent — always comforting.",      // K
+                "Your honest heart.",                  // Q
+                "Our food dates.",                    // J
+                "The way you look at me.",             // 10
+                "Your sleepy morning face.",           // 9
+                "How you care so deeply.",             // 8
+                "The way we say 'Nanoune'.",          // 7
+                "Your hugs whenever you come back.",         // 6
+                "How you laugh at my jokes.",          // 5
+                "Your soft voice.",                    // 4
+                "The way you hold my hand.",           // 3
+                "Your smudged glasses.",               // 2
+                "And everything related to you."           // A
+            ];
+            
+            // Create floating hearts decoration
+            function createHearts() {
+                for (let i = 0; i < 30; i++) {
+                    const heart = document.createElement('div');
+                    heart.classList.add('hearts-decoration');
+                    heart.innerHTML = '♥';
+                    heart.style.left = Math.random() * 100 + 'vw';
+                    heart.style.top = Math.random() * 100 + 'vh';
+                    heart.style.fontSize = (Math.random() * 2 + 1.5) + 'rem';
+                    heart.style.opacity = Math.random() * 0.3 + 0.1;
+                    heart.style.animationDelay = (Math.random() * 5) + 's';
+                    document.body.appendChild(heart);
+                }
+            }
+            
+            // Create cards in the deck
+            function createDeck() {
+                // Create cards in the correct order
+                values.forEach((value, index) => {
+                    const card = document.createElement('div');
+                    card.classList.add('card');
+                    
+                    // Assign suit in sequence
+                    const suit = suits[index % 4];
+                    
+                    // Add slight rotation and offset for a natural deck look
+                    const rotate = (Math.random() * 6) - 3;
+                    const xOffset = (Math.random() * 10) - 5;
+                    const yOffset = -index * 2;
+                    
+                    card.style.transform = `rotate(${rotate}deg) translateX(${xOffset}px) translateY(${yOffset}px)`;
+                    card.style.zIndex = values.length - index; // Ensure proper stacking
+                    
+                    // Card content
+                    card.innerHTML = `
+                        <div class="card-content">
+                            <div class="card-value top-left ${suit}">${value.toUpperCase()}</div>
+                            <div class="card-message">${messages[index]}</div>
+                            <div class="card-value bottom-right ${suit}">${value.toUpperCase()}</div>
+                        </div>
+                    `;
+                    
+                    deck.appendChild(card);
+                    
+                    // Add click event to the card
+                    card.addEventListener('click', function() {
+                        // Add animation class
+                        this.classList.add('flipped');
+                        
+                        // Remove card after animation
+                        setTimeout(() => {
+                            this.remove();
+                            
+                            // If this was the last card, show the final message
+                            if (deck.children.length === 0) {
+                                setTimeout(() => {
+                                    finalMessage.style.display = 'block';
+                                }, 500);
+                            }
+                        }, 1200);
+                    });
+                });
+            }
+            
+            // Initialize
+            createDeck();
+            createHearts();
+        });
+    </script>
+</body>
 </html>
